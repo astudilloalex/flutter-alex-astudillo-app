@@ -42,7 +42,7 @@ class RoutePage {
       ),
       GoRoute(
         path: RouteName.splash,
-        name: RouteName.home,
+        name: RouteName.splash,
         builder: (context, state) => BlocProvider(
           create: (context) => SplashCubit(),
           child: const SplashPage(),
