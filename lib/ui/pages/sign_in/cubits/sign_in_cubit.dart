@@ -3,4 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignInCubit extends Cubit<SignInState> {
   SignInCubit() : super(const SignInState());
+
+  Future<String?> signIn(String email, String password) async {
+    return null;
+  }
 }
