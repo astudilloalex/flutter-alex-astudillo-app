@@ -1,3 +1,4 @@
+import 'package:alex_astudillo/app/app_util.dart';
 import 'package:alex_astudillo/ui/pages/sign_in/cubits/sign_in_cubit.dart';
 import 'package:alex_astudillo/ui/pages/sign_in/states/sign_in_state.dart';
 import 'package:flutter/material.dart';
@@ -33,13 +34,19 @@ class _SignInFormState extends State<SignInForm> {
       child: Column(
         children: [
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: emailController,
             decoration: InputDecoration(
               labelText: AppLocalizations.of(context)!.email,
             ),
+            validator: (value) {
+              if (AppUtil.isEmail(value)) return null;
+              return AppLocalizations.of(context)!.invalidEmail;
+            },
           ),
           const SizedBox(height: 16.0),
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: passwordController,
             decoration: InputDecoration(
               labelText: AppLocalizations.of(context)!.password,
@@ -53,6 +60,10 @@ class _SignInFormState extends State<SignInForm> {
               ),
             ),
             obscureText: !viewPassword,
+            validator: (value) {
+              if (AppUtil.isSafePassword(value)) return null;
+              return AppLocalizations.of(context)!.weakPassword;
+            },
           ),
           const SizedBox(height: 16.0),
           Align(

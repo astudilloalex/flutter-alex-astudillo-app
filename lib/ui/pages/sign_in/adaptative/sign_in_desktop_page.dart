@@ -45,7 +45,7 @@ class SignInDesktopPage extends StatelessWidget {
               child: ConstrainedBox(
                 constraints: const BoxConstraints(
                   maxWidth: 400.0,
-                  maxHeight: 400.0,
+                  maxHeight: 450.0,
                 ),
                 child: Container(
                   decoration: BoxDecoration(
