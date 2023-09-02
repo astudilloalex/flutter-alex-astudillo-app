@@ -1,7 +1,9 @@
 import 'package:alex_astudillo/app/app_asset.dart';
 import 'package:alex_astudillo/ui/pages/sign_in/widgets/sign_in_form.dart';
+import 'package:alex_astudillo/ui/routes/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 
 class SignInFormContainer extends StatelessWidget {
   const SignInFormContainer({super.key});
@@ -60,7 +62,7 @@ class SignInFormContainer extends StatelessWidget {
                 children: [
                   WidgetSpan(
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () => context.goNamed(RouteName.signUp),
                       child: Text(
                         AppLocalizations.of(context)!.signUp,
                         style: TextStyle(
