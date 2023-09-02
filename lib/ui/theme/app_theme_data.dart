@@ -29,6 +29,10 @@ class AppThemeData {
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
+      errorStyle: GoogleFonts.poppins(
+        color: Colors.redAccent,
+      ),
+      labelStyle: GoogleFonts.poppins(),
     ),
     typography: Typography(
       black: TextTheme(

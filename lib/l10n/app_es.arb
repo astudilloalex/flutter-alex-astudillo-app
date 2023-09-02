@@ -1,10 +1,15 @@
 {
+    "alreadyHaveAnAccount": "¿Ya tienes una cuenta?",
     "dontHaveAnAccount": "¿No tienes una cuenta?",
     "email": "Correo electrónico",
     "forgotYourPassword": "¿Olvidaste tu contraseña?",
+    "invalidEmail": "Email no válido",
     "letsStart": "Empecemos",
     "password": "Contraseña",
+    "passwordsDoNotMatch": "Las contraseñas no coinciden",
+    "repeatPassword": "Repite la contraseña",
     "signIn": "Iniciar sesión",
     "signUp": "Regístrate",
+    "weakPassword": "Contraseña débil",
     "welcome": "Bienvenido"
 }

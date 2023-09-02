@@ -1,12 +1,12 @@
 import 'package:alex_astudillo/app/app_asset.dart';
-import 'package:alex_astudillo/ui/pages/sign_in/widgets/sign_in_form.dart';
+import 'package:alex_astudillo/ui/pages/sign_up/widgets/sign_up_form.dart';
 import 'package:alex_astudillo/ui/routes/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
-class SignInFormContainer extends StatelessWidget {
-  const SignInFormContainer({super.key});
+class SignUpFormContainer extends StatelessWidget {
+  const SignUpFormContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class SignInFormContainer extends StatelessWidget {
                   ),
                   children: [
                     TextSpan(
-                      text: AppLocalizations.of(context)!.letsStart,
+                      text: AppLocalizations.of(context)!.signUp,
                       style: const TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.normal,
@@ -50,7 +50,7 @@ class SignInFormContainer extends StatelessWidget {
               constraints: const BoxConstraints(maxWidth: 400.0),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: SignInForm(),
+                child: SignUpForm(),
               ),
             ),
           ),
@@ -58,13 +58,13 @@ class SignInFormContainer extends StatelessWidget {
           Center(
             child: Text.rich(
               TextSpan(
-                text: '${AppLocalizations.of(context)!.dontHaveAnAccount} ',
+                text: '${AppLocalizations.of(context)!.alreadyHaveAnAccount} ',
                 children: [
                   WidgetSpan(
                     child: InkWell(
-                      onTap: () => context.goNamed(RouteName.signUp),
+                      onTap: () => context.goNamed(RouteName.signIn),
                       child: Text(
-                        AppLocalizations.of(context)!.signUp,
+                        AppLocalizations.of(context)!.signIn,
                         style: TextStyle(
                           color: Theme.of(context).primaryColor,
                         ),
