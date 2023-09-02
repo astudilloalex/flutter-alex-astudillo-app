@@ -112,6 +112,8 @@ class _SignInFormState extends State<SignInForm> {
       emailController.text.trim(),
       passwordController.text.trim(),
     );
-    future.then((value) {});
+    future.then((value) {
+      if (value == null) context.goNamed(RouteName.home);
+    });
   }
 }
