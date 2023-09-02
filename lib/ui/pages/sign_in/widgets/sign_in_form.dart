@@ -1,9 +1,12 @@
 import 'package:alex_astudillo/app/app_util.dart';
 import 'package:alex_astudillo/ui/pages/sign_in/cubits/sign_in_cubit.dart';
 import 'package:alex_astudillo/ui/pages/sign_in/states/sign_in_state.dart';
+import 'package:alex_astudillo/ui/routes/route_name.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
@@ -38,6 +41,7 @@ class _SignInFormState extends State<SignInForm> {
             controller: emailController,
             decoration: InputDecoration(
               labelText: AppLocalizations.of(context)!.email,
+              prefixIcon: const Icon(Icons.email_outlined),
             ),
             validator: (value) {
               if (AppUtil.isEmail(value)) return null;
@@ -50,6 +54,7 @@ class _SignInFormState extends State<SignInForm> {
             controller: passwordController,
             decoration: InputDecoration(
               labelText: AppLocalizations.of(context)!.password,
+              prefixIcon: const Icon(Icons.password_outlined),
               suffixIcon: IconButton(
                 onPressed: () => setState(() => viewPassword = !viewPassword),
                 icon: Icon(
@@ -69,7 +74,13 @@ class _SignInFormState extends State<SignInForm> {
           Align(
             alignment: Alignment.centerRight,
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                if (kIsWeb) {
+                  context.goNamed(RouteName.forgotPassword);
+                } else {
+                  context.pushNamed(RouteName.forgotPassword);
+                }
+              },
               child: Text(AppLocalizations.of(context)!.forgotYourPassword),
             ),
           ),
@@ -95,6 +106,7 @@ class _SignInFormState extends State<SignInForm> {
   }
 
   void _signIn() {
+    if (!formKey.currentState!.validate()) return;
     final SignInCubit cubit = context.read<SignInCubit>();
     final Future<String?> future = cubit.signIn(
       emailController.text.trim(),

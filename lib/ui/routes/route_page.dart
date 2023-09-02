@@ -1,3 +1,5 @@
+import 'package:alex_astudillo/ui/pages/forgot_password/cubits/forgot_password_cubit.dart';
+import 'package:alex_astudillo/ui/pages/forgot_password/forgot_password_page.dart';
 import 'package:alex_astudillo/ui/pages/home/cubits/home_cubit.dart';
 import 'package:alex_astudillo/ui/pages/home/home_page.dart';
 import 'package:alex_astudillo/ui/pages/sign_in/cubits/sign_in_cubit.dart';
@@ -16,6 +18,14 @@ class RoutePage {
   static final GoRouter router = GoRouter(
     initialLocation: RouteName.signIn,
     routes: [
+      GoRoute(
+        path: RouteName.forgotPassword,
+        name: RouteName.forgotPassword,
+        builder: (context, state) => BlocProvider(
+          create: (context) => ForgotPasswordCubit(),
+          child: const ForgotPasswordPage(),
+        ),
+      ),
       GoRoute(
         path: RouteName.home,
         name: RouteName.home,

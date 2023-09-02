@@ -41,6 +41,7 @@ class _SignUpFormState extends State<SignUpForm> {
             controller: emailController,
             decoration: InputDecoration(
               labelText: AppLocalizations.of(context)!.email,
+              prefixIcon: const Icon(Icons.email_outlined),
             ),
             validator: (value) {
               if (AppUtil.isEmail(value)) return null;
@@ -53,6 +54,7 @@ class _SignUpFormState extends State<SignUpForm> {
             controller: passwordController,
             decoration: InputDecoration(
               labelText: AppLocalizations.of(context)!.password,
+              prefixIcon: const Icon(Icons.password_outlined),
               suffixIcon: IconButton(
                 onPressed: () => setState(() => viewPassword = !viewPassword),
                 icon: Icon(
@@ -74,6 +76,7 @@ class _SignUpFormState extends State<SignUpForm> {
             controller: repeatPasswordController,
             decoration: InputDecoration(
               labelText: AppLocalizations.of(context)!.repeatPassword,
+              prefixIcon: const Icon(Icons.password_outlined),
               suffixIcon: IconButton(
                 onPressed: () => setState(() => viewPassword = !viewPassword),
                 icon: Icon(
@@ -112,5 +115,7 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
-  void _signUp() {}
+  void _signUp() {
+    if (!formKey.currentState!.validate()) return;
+  }
 }
