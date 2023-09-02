@@ -1,3 +1,10 @@
 {
-    "signIn": "Iniciar sesión" 
+    "dontHaveAnAccount": "¿No tienes una cuenta?",
+    "email": "Correo electrónico",
+    "forgotYourPassword": "¿Olvidaste tu contraseña?",
+    "letsStart": "Empecemos",
+    "password": "Contraseña",
+    "signIn": "Iniciar sesión",
+    "signUp": "Regístrate",
+    "welcome": "Bienvenido"
 }

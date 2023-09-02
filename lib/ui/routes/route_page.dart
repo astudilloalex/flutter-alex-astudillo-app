@@ -14,7 +14,7 @@ class RoutePage {
   const RoutePage._();
 
   static final GoRouter router = GoRouter(
-    initialLocation: RouteName.splash,
+    initialLocation: RouteName.signIn,
     routes: [
       GoRoute(
         path: RouteName.home,

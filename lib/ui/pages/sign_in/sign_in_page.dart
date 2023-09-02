@@ -11,6 +11,7 @@ class SignInPage extends StatelessWidget {
     return const ResponsiveWidget(
       desktop: SignInDesktopPage(),
       phone: SignInPhonePage(),
+      tablet: SignInDesktopPage(),
     );
   }
 }

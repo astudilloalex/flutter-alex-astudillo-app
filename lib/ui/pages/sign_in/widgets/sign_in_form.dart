@@ -17,6 +17,8 @@ class _SignInFormState extends State<SignInForm> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  bool viewPassword = false;
+
   @override
   void dispose() {
     emailController.dispose();
@@ -32,10 +34,33 @@ class _SignInFormState extends State<SignInForm> {
         children: [
           TextFormField(
             controller: emailController,
+            decoration: InputDecoration(
+              labelText: AppLocalizations.of(context)!.email,
+            ),
           ),
           const SizedBox(height: 16.0),
           TextFormField(
             controller: passwordController,
+            decoration: InputDecoration(
+              labelText: AppLocalizations.of(context)!.password,
+              suffixIcon: IconButton(
+                onPressed: () => setState(() => viewPassword = !viewPassword),
+                icon: Icon(
+                  !viewPassword
+                      ? Icons.visibility_outlined
+                      : Icons.visibility_off_outlined,
+                ),
+              ),
+            ),
+            obscureText: !viewPassword,
+          ),
+          const SizedBox(height: 16.0),
+          Align(
+            alignment: Alignment.centerRight,
+            child: InkWell(
+              onTap: () {},
+              child: Text(AppLocalizations.of(context)!.forgotYourPassword),
+            ),
           ),
           const SizedBox(height: 16.0),
           BlocBuilder<SignInCubit, SignInState>(
