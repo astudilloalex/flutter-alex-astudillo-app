@@ -21,7 +21,8 @@ Establishment _$EstablishmentFromJson(Map<String, dynamic> json) =>
       establishmentType: json['establishmentType'] == null
           ? null
           : EstablishmentType.fromJson(
-              json['establishmentType'] as Map<String, dynamic>),
+              json['establishmentType'] as Map<String, dynamic>,
+            ),
       establishmentTypeId: json['establishmentTypeId'] as int? ?? 0,
       id: json['id'] as int? ?? 0,
       location: json['location'] == null

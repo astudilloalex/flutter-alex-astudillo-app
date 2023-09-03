@@ -14,7 +14,8 @@ Person _$PersonFromJson(Map<String, dynamic> json) => Person(
       documentType: json['documentType'] == null
           ? null
           : PersonDocumentType.fromJson(
-              json['documentType'] as Map<String, dynamic>),
+              json['documentType'] as Map<String, dynamic>,
+            ),
       documentTypeId: json['documentTypeId'] as int? ?? 0,
       firstName: json['firstName'] as String?,
       id: json['id'] as int? ?? 0,

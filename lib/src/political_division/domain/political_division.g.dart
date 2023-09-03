@@ -27,7 +27,8 @@ PoliticalDivision _$PoliticalDivisionFromJson(Map<String, dynamic> json) =>
       politicalDivisionType: json['politicalDivisionType'] == null
           ? null
           : PoliticalDivisionType.fromJson(
-              json['politicalDivisionType'] as Map<String, dynamic>),
+              json['politicalDivisionType'] as Map<String, dynamic>,
+            ),
       politicalDivisionTypeId: json['politicalDivisionTypeId'] as int? ?? 0,
       updateDate: json['updateDate'] == null
           ? null
