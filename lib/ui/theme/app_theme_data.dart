@@ -53,6 +53,7 @@ class AppThemeData {
         titleSmall: GoogleFonts.poppins(),
       ),
     ),
+    tabBarTheme: const TabBarTheme(labelColor: Colors.white),
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }

@@ -32,7 +32,10 @@ class ContainerAppBar extends StatelessWidget implements PreferredSizeWidget {
             onPressed: () {
               context.read<AppContainerCubit>().changeNotifications();
             },
-            icon: const Icon(Icons.notifications_outlined),
+            icon:
+                context.watch<AppContainerCubit>().state.countNotifications > 0
+                    ? const Icon(Icons.notifications)
+                    : const Icon(Icons.notifications_outlined),
           ),
         ),
         const SizedBox(width: 16.0),

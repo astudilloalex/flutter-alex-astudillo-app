@@ -3,6 +3,7 @@ import 'package:alex_astudillo/ui/pages/forgot_password/forgot_password_page.dar
 import 'package:alex_astudillo/ui/pages/home/cubits/home_cubit.dart';
 import 'package:alex_astudillo/ui/pages/home/home_page.dart';
 import 'package:alex_astudillo/ui/pages/profile/cubits/profile_cubit.dart';
+import 'package:alex_astudillo/ui/pages/profile/cubits/profile_detail_cubit.dart';
 import 'package:alex_astudillo/ui/pages/profile/profile_page.dart';
 import 'package:alex_astudillo/ui/pages/sign_in/cubits/sign_in_cubit.dart';
 import 'package:alex_astudillo/ui/pages/sign_in/sign_in_page.dart';
@@ -49,8 +50,11 @@ class RoutePage {
           GoRoute(
             path: RouteName.profile,
             name: RouteName.profile,
-            builder: (context, state) => BlocProvider(
-              create: (context) => ProfileCubit(),
+            builder: (context, state) => MultiBlocProvider(
+              providers: [
+                BlocProvider(create: (context) => ProfileCubit()),
+                BlocProvider(create: (context) => ProfileDetailCubit()),
+              ],
               child: const ProfilePage(),
             ),
           ),

@@ -1,8 +1,8 @@
 /// Settings for responsive apps or adaptative.
 class ResponsiveScreenSettings {
   const ResponsiveScreenSettings({
-    this.desktopChangePoint = 1200,
-    this.tabletChangePoint = 600,
+    this.desktopChangePoint = 1100,
+    this.tabletChangePoint = 700,
     this.watchChangePoint = 300,
   });
 

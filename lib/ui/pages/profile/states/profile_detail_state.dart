@@ -1,0 +1,3 @@
+class ProfileDetailState {
+  const ProfileDetailState();
+}

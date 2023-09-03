@@ -1,28 +1,31 @@
+import 'package:alex_astudillo/ui/pages/profile/cubits/profile_cubit.dart';
+import 'package:alex_astudillo/ui/pages/profile/states/profile_state.dart';
+import 'package:alex_astudillo/ui/pages/profile/widgets/profile_tab_bar.dart';
+import 'package:alex_astudillo/ui/pages/profile/widgets/user_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfilePhonePage extends StatelessWidget {
   const ProfilePhonePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: const [
-        SizedBox(height: 16.0),
+    return Column(
+      children: [
+        const SizedBox(height: 16.0),
+        const UserAvatar(),
         Center(
-          child: CircleAvatar(
-            radius: 35.0,
-            foregroundImage: NetworkImage(
-              'https://lh3.googleusercontent.com/a/AAcHTtc8tX3kgPCQUwgq1mHQoYWS7I6BEl026HfRBo7tMR56NNs=s432-c-no',
-              scale: 0.5,
-            ),
+          child: BlocBuilder<ProfileCubit, ProfileState>(
+            builder: (context, state) {
+              return Text(
+                state.user.displayName ?? '',
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              );
+            },
           ),
         ),
-        Center(
-          child: Text(
-            'Alex Astudillo',
-            style: TextStyle(fontWeight: FontWeight.w600),
-          ),
-        ),
+        const SizedBox(height: 16.0),
+        const Expanded(child: ProfileTabBar()),
       ],
     );
   }

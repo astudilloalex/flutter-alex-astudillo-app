@@ -11,6 +11,7 @@ class ProfilePage extends StatelessWidget {
     return const ResponsiveWidget(
       desktop: ProfileDesktopPage(),
       phone: ProfilePhonePage(),
+      tablet: ProfileDesktopPage(),
     );
   }
 }
