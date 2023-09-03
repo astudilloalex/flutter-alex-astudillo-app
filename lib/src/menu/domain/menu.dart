@@ -1,5 +1,9 @@
 import 'package:alex_astudillo/src/organization/domain/organization.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'menu.g.dart';
+
+@JsonSerializable()
 class Menu {
   const Menu({
     this.active = true,
