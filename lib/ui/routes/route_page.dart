@@ -19,77 +19,75 @@ import 'package:go_router/go_router.dart';
 class RoutePage {
   const RoutePage._();
 
-  static GoRouter get router {
-    return GoRouter(
-      initialLocation: RouteName.signIn,
-      routes: [
-        ShellRoute(
-          builder: (context, state, child) {
-            int index = 0;
-            switch (state.fullPath) {
-              case RouteName.profile:
-                index = 1;
-              default:
-                index = 0;
-                break;
-            }
-            return BlocProvider(
-              create: (context) => AppContainerCubit(currentIndex: index),
-              child: AppContainer(body: child),
-            );
-          },
-          routes: [
-            GoRoute(
-              path: RouteName.home,
-              name: RouteName.home,
-              builder: (context, state) => BlocProvider(
-                create: (context) => HomeCubit(),
-                child: const HomePage(),
-              ),
+  static final GoRouter router = GoRouter(
+    initialLocation: RouteName.signIn,
+    routes: [
+      ShellRoute(
+        builder: (context, state, child) {
+          int index = 0;
+          switch (state.fullPath) {
+            case RouteName.profile:
+              index = 1;
+            default:
+              index = 0;
+              break;
+          }
+          return BlocProvider(
+            create: (context) => AppContainerCubit(currentIndex: index),
+            child: AppContainer(body: child),
+          );
+        },
+        routes: [
+          GoRoute(
+            path: RouteName.home,
+            name: RouteName.home,
+            builder: (context, state) => BlocProvider(
+              create: (context) => HomeCubit(),
+              child: const HomePage(),
             ),
-            GoRoute(
-              path: RouteName.profile,
-              name: RouteName.profile,
-              builder: (context, state) => BlocProvider(
-                create: (context) => ProfileCubit(),
-                child: const ProfilePage(),
-              ),
+          ),
+          GoRoute(
+            path: RouteName.profile,
+            name: RouteName.profile,
+            builder: (context, state) => BlocProvider(
+              create: (context) => ProfileCubit(),
+              child: const ProfilePage(),
             ),
-          ],
-        ),
-        GoRoute(
-          path: RouteName.forgotPassword,
-          name: RouteName.forgotPassword,
-          builder: (context, state) => BlocProvider(
-            create: (context) => ForgotPasswordCubit(),
-            child: const ForgotPasswordPage(),
           ),
+        ],
+      ),
+      GoRoute(
+        path: RouteName.forgotPassword,
+        name: RouteName.forgotPassword,
+        builder: (context, state) => BlocProvider(
+          create: (context) => ForgotPasswordCubit(),
+          child: const ForgotPasswordPage(),
         ),
-        GoRoute(
-          path: RouteName.signIn,
-          name: RouteName.signIn,
-          builder: (context, state) => BlocProvider(
-            create: (context) => SignInCubit(),
-            child: const SignInPage(),
-          ),
+      ),
+      GoRoute(
+        path: RouteName.signIn,
+        name: RouteName.signIn,
+        builder: (context, state) => BlocProvider(
+          create: (context) => SignInCubit(),
+          child: const SignInPage(),
         ),
-        GoRoute(
-          path: RouteName.signUp,
-          name: RouteName.signUp,
-          builder: (context, state) => BlocProvider(
-            create: (context) => SignUpCubit(),
-            child: const SignUpPage(),
-          ),
+      ),
+      GoRoute(
+        path: RouteName.signUp,
+        name: RouteName.signUp,
+        builder: (context, state) => BlocProvider(
+          create: (context) => SignUpCubit(),
+          child: const SignUpPage(),
         ),
-        GoRoute(
-          path: RouteName.splash,
-          name: RouteName.splash,
-          builder: (context, state) => BlocProvider(
-            create: (context) => SplashCubit(),
-            child: const SplashPage(),
-          ),
+      ),
+      GoRoute(
+        path: RouteName.splash,
+        name: RouteName.splash,
+        builder: (context, state) => BlocProvider(
+          create: (context) => SplashCubit(),
+          child: const SplashPage(),
         ),
-      ],
-    );
-  }
+      ),
+    ],
+  );
 }

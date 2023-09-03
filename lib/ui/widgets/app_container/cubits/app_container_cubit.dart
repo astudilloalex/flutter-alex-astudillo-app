@@ -10,4 +10,8 @@ class AppContainerCubit extends Cubit<AppContainerState> {
   void updateIndex(int index) {
     emit(state.copyWith(currentIndex: index));
   }
+
+  void changeNotifications() {
+    emit(state.copyWith(countNotifications: state.countNotifications + 1));
+  }
 }

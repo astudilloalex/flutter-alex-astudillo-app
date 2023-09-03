@@ -1,12 +1,29 @@
+import 'package:alex_astudillo/ui/utils/responsive/responsive_screen.dart';
+import 'package:alex_astudillo/ui/utils/responsive/responsive_screen_settings.dart';
 import 'package:flutter/widgets.dart';
 
 class ResponsiveWidget extends StatelessWidget {
+  /// Build a responsive widget.
   const ResponsiveWidget({
     super.key,
+    this.builder,
     this.desktop,
     this.phone,
     this.tablet,
-  }) : assert(desktop != null || phone != null || tablet != null);
+    this.watch,
+  }) : assert(
+          builder != null ||
+              desktop != null ||
+              phone != null ||
+              tablet != null ||
+              watch != null,
+          'You need add at least one widget',
+        );
+
+  /// This widget has priority over all other widgets.
+  ///
+  /// Use for custom your own design for each device.
+  final Widget? builder;
 
   /// Widget to display in desktop screen.
   final Widget? desktop;
@@ -17,18 +34,16 @@ class ResponsiveWidget extends StatelessWidget {
   /// Widget to display in tablet screen.
   final Widget? tablet;
 
+  /// Widget to display on watch screen.
+  final Widget? watch;
+
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth >= 1000.0) {
-          return desktop ?? tablet ?? phone!;
-        }
-        if (constraints.maxWidth >= 767.98) {
-          return tablet ?? phone ?? desktop!;
-        }
-        return phone ?? tablet ?? desktop!;
-      },
-    );
+    if (builder != null) return builder!;
+    final ScreenType type = ResponsiveScreen().screenType(context);
+    if (type == ScreenType.desktop) return desktop ?? tablet ?? phone ?? watch!;
+    if (type == ScreenType.tablet) return tablet ?? phone ?? watch ?? desktop!;
+    if (type == ScreenType.phone) return phone ?? watch ?? tablet ?? desktop!;
+    return watch ?? phone ?? tablet ?? desktop!;
   }
 }

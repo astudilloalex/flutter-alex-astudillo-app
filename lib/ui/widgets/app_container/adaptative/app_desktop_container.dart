@@ -1,5 +1,6 @@
 import 'package:alex_astudillo/ui/routes/route_name.dart';
 import 'package:alex_astudillo/ui/widgets/app_container/cubits/app_container_cubit.dart';
+import 'package:alex_astudillo/ui/widgets/app_container/widgets/container_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -13,7 +14,7 @@ class AppDesktopContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: const ContainerAppBar(),
       body: Row(
         children: [
           NavigationRail(
