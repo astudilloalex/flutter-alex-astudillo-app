@@ -3,4 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileDetailCubit extends Cubit<ProfileDetailState> {
   ProfileDetailCubit() : super(const ProfileDetailState());
+
+  void changeIndex(int? currentIndex) {
+    emit(state.copyWith(currentMenuIndex: currentIndex));
+  }
 }

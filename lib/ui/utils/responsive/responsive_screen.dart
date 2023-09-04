@@ -50,4 +50,6 @@ class ResponsiveScreen {
     if (width < _settings.watchChangePoint) return ScreenType.watch;
     return ScreenType.phone;
   }
+
+  ResponsiveScreenSettings get settings => _settings;
 }

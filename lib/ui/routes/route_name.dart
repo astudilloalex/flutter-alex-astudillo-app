@@ -1,6 +1,7 @@
 class RouteName {
   const RouteName._();
 
+  static const String editProfile = '/edit-profile';
   static const String forgotPassword = '/forgot-password';
   static const String home = '/home';
   static const String profile = '/profile';

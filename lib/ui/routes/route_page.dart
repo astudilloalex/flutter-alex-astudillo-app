@@ -1,3 +1,5 @@
+import 'package:alex_astudillo/ui/pages/edit_profile/cubits/edit_profile_cubit.dart';
+import 'package:alex_astudillo/ui/pages/edit_profile/edit_profile_page.dart';
 import 'package:alex_astudillo/ui/pages/forgot_password/cubits/forgot_password_cubit.dart';
 import 'package:alex_astudillo/ui/pages/forgot_password/forgot_password_page.dart';
 import 'package:alex_astudillo/ui/pages/home/cubits/home_cubit.dart';
@@ -14,16 +16,33 @@ import 'package:alex_astudillo/ui/pages/splash/splash_page.dart';
 import 'package:alex_astudillo/ui/routes/route_name.dart';
 import 'package:alex_astudillo/ui/widgets/app_container/app_container.dart';
 import 'package:alex_astudillo/ui/widgets/app_container/cubits/app_container_cubit.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class RoutePage {
   const RoutePage._();
 
+  static final GlobalKey<NavigatorState> _shellKey =
+      GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> _navigatorKey =
+      GlobalKey<NavigatorState>();
+
   static final GoRouter router = GoRouter(
-    initialLocation: RouteName.signIn,
+    initialLocation: RouteName.home,
+    navigatorKey: _navigatorKey,
     routes: [
+      GoRoute(
+        parentNavigatorKey: _navigatorKey,
+        path: RouteName.editProfile,
+        name: RouteName.editProfile,
+        builder: (context, state) => BlocProvider(
+          create: (context) => EditProfileCubit(),
+          child: const EditProfilePage(),
+        ),
+      ),
       ShellRoute(
+        navigatorKey: _shellKey,
         builder: (context, state, child) {
           int index = 0;
           switch (state.fullPath) {
@@ -40,6 +59,7 @@ class RoutePage {
         },
         routes: [
           GoRoute(
+            parentNavigatorKey: _shellKey,
             path: RouteName.home,
             name: RouteName.home,
             builder: (context, state) => BlocProvider(
@@ -48,6 +68,7 @@ class RoutePage {
             ),
           ),
           GoRoute(
+            parentNavigatorKey: _shellKey,
             path: RouteName.profile,
             name: RouteName.profile,
             builder: (context, state) => MultiBlocProvider(

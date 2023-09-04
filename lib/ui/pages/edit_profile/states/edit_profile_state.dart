@@ -1,0 +1,3 @@
+class EditProfileState {
+  const EditProfileState();
+}

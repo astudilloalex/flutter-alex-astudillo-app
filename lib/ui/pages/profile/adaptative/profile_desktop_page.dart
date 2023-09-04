@@ -1,4 +1,8 @@
+import 'package:alex_astudillo/ui/pages/edit_profile/cubits/edit_profile_cubit.dart';
+import 'package:alex_astudillo/ui/pages/edit_profile/edit_profile_page.dart';
 import 'package:alex_astudillo/ui/pages/profile/cubits/profile_cubit.dart';
+import 'package:alex_astudillo/ui/pages/profile/cubits/profile_detail_cubit.dart';
+import 'package:alex_astudillo/ui/pages/profile/states/profile_detail_state.dart';
 import 'package:alex_astudillo/ui/pages/profile/states/profile_state.dart';
 import 'package:alex_astudillo/ui/pages/profile/widgets/profile_tab_bar.dart';
 import 'package:alex_astudillo/ui/pages/profile/widgets/user_avatar.dart';
@@ -34,7 +38,19 @@ class ProfileDesktopPage extends StatelessWidget {
           ),
         ),
         const VerticalDivider(width: 0.0),
-        Expanded(child: SizedBox()),
+        Expanded(
+          child: BlocBuilder<ProfileDetailCubit, ProfileDetailState>(
+            builder: (context, state) {
+              if (state.currentMenuIndex == 0) {
+                return BlocProvider(
+                  create: (context) => EditProfileCubit(),
+                  child: const EditProfilePage(),
+                );
+              }
+              return const SizedBox.shrink();
+            },
+          ),
+        ),
       ],
     );
   }
