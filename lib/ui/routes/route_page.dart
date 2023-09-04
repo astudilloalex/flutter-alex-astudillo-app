@@ -29,7 +29,7 @@ class RoutePage {
       GlobalKey<NavigatorState>();
 
   static final GoRouter router = GoRouter(
-    initialLocation: RouteName.home,
+    initialLocation: RouteName.signIn,
     navigatorKey: _navigatorKey,
     routes: [
       GoRoute(
