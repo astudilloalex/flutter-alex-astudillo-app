@@ -16,7 +16,7 @@ class User {
     this.emailVerified = false,
     this.id = 0,
     this.person,
-    this.personCode,
+    this.personId,
     this.phoneNumber,
     this.photoUrl,
     this.providers,
@@ -27,7 +27,7 @@ class User {
   });
 
   final int id;
-  final String? personCode;
+  final int? personId;
   final String code;
   final String? displayName;
   final String? email;
@@ -44,7 +44,7 @@ class User {
 
   User copyWith({
     int? id,
-    String? personCode,
+    int? personId,
     String? code,
     String? displayName,
     String? email,
@@ -61,7 +61,7 @@ class User {
   }) {
     return User(
       id: id ?? this.id,
-      personCode: personCode ?? this.personCode,
+      personId: personId ?? this.personId,
       code: code ?? this.code,
       displayName: displayName ?? this.displayName,
       email: email ?? this.email,
