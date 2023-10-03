@@ -1,3 +1,4 @@
+import 'package:alex_astudillo/src/auth/application/auth_service.dart';
 import 'package:alex_astudillo/src/auth/domain/i_auth_repository.dart';
 import 'package:alex_astudillo/src/auth/infrastructure/auth_repository.dart';
 import 'package:alex_astudillo/src/common/infrastructure/http_base_client.dart';
@@ -11,6 +12,7 @@ GetIt getIt = GetIt.instance;
 void setupGetIt() {
   getIt.registerSingleton<SecureLocalData>(const SecureLocalData());
 
+  /// Retry client to refresh token.
   final HttpBaseClient httpClient = HttpBaseClient(
     client: RetryClient(
       Client(),
@@ -18,9 +20,21 @@ void setupGetIt() {
       when: (response) {
         return response.statusCode == 401;
       },
-      onRetry: (request, response, retryCount) {},
+      onRetry: (request, response, retryCount) async {
+        if (retryCount == 0 && response?.statusCode == 401) {
+          await getIt<AuthService>().exchangeRefreshToken();
+        }
+      },
     ),
+    secureLocalData: getIt<SecureLocalData>(),
   );
 
   getIt.registerSingleton<IAuthRepository>(AuthRepository(httpClient));
+
+  getIt.registerFactory<AuthService>(
+    () => AuthService(
+      getIt<IAuthRepository>(),
+      secureLocalData: getIt<SecureLocalData>(),
+    ),
+  );
 }
