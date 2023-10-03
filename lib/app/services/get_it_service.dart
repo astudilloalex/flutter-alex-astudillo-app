@@ -1,6 +1,7 @@
 import 'package:alex_astudillo/src/auth/domain/i_auth_repository.dart';
 import 'package:alex_astudillo/src/auth/infrastructure/auth_repository.dart';
 import 'package:alex_astudillo/src/common/infrastructure/http_base_client.dart';
+import 'package:alex_astudillo/src/common/infrastructure/secure_local_data.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:http/retry.dart';
@@ -8,6 +9,8 @@ import 'package:http/retry.dart';
 GetIt getIt = GetIt.instance;
 
 void setupGetIt() {
+  getIt.registerSingleton<SecureLocalData>(const SecureLocalData());
+
   final HttpBaseClient httpClient = HttpBaseClient(
     client: RetryClient(
       Client(),
@@ -18,5 +21,6 @@ void setupGetIt() {
       onRetry: (request, response, retryCount) {},
     ),
   );
+
   getIt.registerSingleton<IAuthRepository>(AuthRepository(httpClient));
 }
