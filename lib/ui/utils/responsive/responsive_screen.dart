@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:alex_astudillo/ui/utils/extensions/context_extension.dart';
 import 'package:alex_astudillo/ui/utils/responsive/responsive_screen_settings.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 class ResponsiveScreen {
@@ -42,7 +43,7 @@ class ResponsiveScreen {
   /// Get the screen type based on the [context].
   ScreenType screenType(BuildContext context) {
     final bool isDesktop =
-        Platform.isMacOS || Platform.isWindows || Platform.isLinux;
+        kIsWeb || Platform.isMacOS || Platform.isWindows || Platform.isLinux;
     final double width =
         isDesktop ? context.width : context.mediaQueryShortestSide;
     if (width >= _settings.desktopChangePoint) return ScreenType.desktop;

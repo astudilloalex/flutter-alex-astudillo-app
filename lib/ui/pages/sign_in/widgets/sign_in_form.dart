@@ -1,3 +1,4 @@
+import 'package:alex_astudillo/app/app.dart';
 import 'package:alex_astudillo/app/app_util.dart';
 import 'package:alex_astudillo/ui/pages/sign_in/cubits/sign_in_cubit.dart';
 import 'package:alex_astudillo/ui/pages/sign_in/states/sign_in_state.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
@@ -105,15 +107,18 @@ class _SignInFormState extends State<SignInForm> {
     );
   }
 
-  void _signIn() {
+  Future<void> _signIn() async {
     if (!formKey.currentState!.validate()) return;
     final SignInCubit cubit = context.read<SignInCubit>();
     final Future<String?> future = cubit.signIn(
       emailController.text.trim(),
       passwordController.text.trim(),
     );
-    future.then((value) {
+    context.loaderOverlay.show();
+    await future.then((value) {
       if (value == null) context.goNamed(RouteName.home);
+      if (value != null) showErrorSnackbar(context, value);
     });
+    if (mounted) context.loaderOverlay.hide();
   }
 }

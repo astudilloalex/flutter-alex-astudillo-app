@@ -1,3 +1,5 @@
+import 'package:alex_astudillo/app/services/get_it_service.dart';
+import 'package:alex_astudillo/src/auth/application/auth_service.dart';
 import 'package:alex_astudillo/ui/pages/edit_profile/cubits/edit_profile_cubit.dart';
 import 'package:alex_astudillo/ui/pages/edit_profile/edit_profile_page.dart';
 import 'package:alex_astudillo/ui/pages/forgot_password/cubits/forgot_password_cubit.dart';
@@ -93,7 +95,9 @@ class RoutePage {
         path: RouteName.signIn,
         name: RouteName.signIn,
         builder: (context, state) => BlocProvider(
-          create: (context) => SignInCubit(),
+          create: (context) => SignInCubit(
+            authService: getIt<AuthService>(),
+          ),
           child: const SignInPage(),
         ),
       ),
