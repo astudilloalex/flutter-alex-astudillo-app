@@ -46,8 +46,10 @@ class AuthService {
   }
 
   Future<AuthResponse> exchangeRefreshToken() async {
+    final String? refreshToken = await secureLocalData.refreshToken;
+    if (refreshToken == null) throw Exception();
     final DefaultResponse response = await _repository.exchangeRefreshToken(
-      await secureLocalData.refreshToken ?? '',
+      refreshToken,
     );
     if (response.statusCode != 200) {
       throw HttpException(

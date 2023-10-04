@@ -31,7 +31,7 @@ class RoutePage {
       GlobalKey<NavigatorState>();
 
   static final GoRouter router = GoRouter(
-    initialLocation: RouteName.signIn,
+    initialLocation: RouteName.splash,
     navigatorKey: _navigatorKey,
     routes: [
       GoRoute(
@@ -113,7 +113,7 @@ class RoutePage {
         path: RouteName.splash,
         name: RouteName.splash,
         builder: (context, state) => BlocProvider(
-          create: (context) => SplashCubit(),
+          create: (context) => SplashCubit(authService: getIt<AuthService>()),
           child: const SplashPage(),
         ),
       ),

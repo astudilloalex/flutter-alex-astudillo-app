@@ -21,7 +21,10 @@ void setupGetIt() {
         return response.statusCode == 401;
       },
       onRetry: (request, response, retryCount) async {
-        if (retryCount == 0 && response?.statusCode == 401) {
+        if (retryCount == 0 &&
+            response?.statusCode == 401 &&
+            !request.url.path.contains('/sign-in') &&
+            !request.url.path.contains('/sign-up')) {
           await getIt<AuthService>().exchangeRefreshToken();
         }
       },
