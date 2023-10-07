@@ -5,8 +5,11 @@ class AppAsset {
       'assets/icons/alex_astudillo_logo.png';
   static const String businessFutureCarousel =
       'assets/images/business_future_carousel.jpg';
+  static const String changePassword = 'assets/images/change_password.png';
   static const String circleFutureCarousel =
       'assets/images/circle_future_carousel.jpg';
+  static const String noActionsAvailable =
+      'assets/images/no_actions_available.png';
   static const String spaceshipFutureCarousel =
       'assets/images/spaceship_future_carousel.jpg';
 }

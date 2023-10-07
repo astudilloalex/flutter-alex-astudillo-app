@@ -39,7 +39,7 @@ class HttpBaseClient extends BaseClient {
     return client.send(request);
   }
 
-  String get apiAuthority => 'http://localhost:5034/api/v1';
+  String get apiAuthorityV1 => 'http://localhost:5034/api/v1';
 
   /// Parse [data] map to json with isolates.
   Future<String> parseToJson(Map<String, dynamic> data) async {

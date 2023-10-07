@@ -18,6 +18,8 @@
     "home": "Inicio",
     "invalidEmail": "Email no válido",
     "letsStart": "Empecemos",
+    "newPassword": "Nueva contraseña",
+    "noAction": "No hay acciones",
     "notifications": "Notificaciones",
     "password": "Contraseña",
     "passwordsDoNotMatch": "Las contraseñas no coinciden",

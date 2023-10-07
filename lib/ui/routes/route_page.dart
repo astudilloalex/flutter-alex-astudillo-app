@@ -1,5 +1,7 @@
 import 'package:alex_astudillo/app/services/get_it_service.dart';
 import 'package:alex_astudillo/src/auth/application/auth_service.dart';
+import 'package:alex_astudillo/ui/pages/auth/auth_page.dart';
+import 'package:alex_astudillo/ui/pages/auth/cubits/auth_cubit.dart';
 import 'package:alex_astudillo/ui/pages/edit_profile/cubits/edit_profile_cubit.dart';
 import 'package:alex_astudillo/ui/pages/edit_profile/edit_profile_page.dart';
 import 'package:alex_astudillo/ui/pages/forgot_password/cubits/forgot_password_cubit.dart';
@@ -34,6 +36,18 @@ class RoutePage {
     initialLocation: RouteName.splash,
     navigatorKey: _navigatorKey,
     routes: [
+      GoRoute(
+        parentNavigatorKey: _navigatorKey,
+        path: RouteName.authAction,
+        name: RouteName.authAction,
+        builder: (context, state) => BlocProvider(
+          create: (context) => AuthCubit(
+            mode: state.uri.queryParameters['mode'] ?? '',
+            oobCode: state.uri.queryParameters['oobCode'] ?? '',
+          )..executeAction(),
+          child: const AuthPage(),
+        ),
+      ),
       GoRoute(
         parentNavigatorKey: _navigatorKey,
         path: RouteName.editProfile,
