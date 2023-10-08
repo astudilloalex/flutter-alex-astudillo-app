@@ -1,9 +1,11 @@
 import 'package:alex_astudillo/app/app.dart';
 import 'package:alex_astudillo/app/app_util.dart';
 import 'package:alex_astudillo/ui/pages/auth/cubits/auth_cubit.dart';
+import 'package:alex_astudillo/ui/routes/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
 class AuthChangePasswordForm extends StatefulWidget {
@@ -100,7 +102,9 @@ class _AuthChangePasswordFormState extends State<AuthChangePasswordForm> {
         );
     if (error != null && mounted) {
       showErrorSnackbar(context, error);
+    } else if (mounted) {
+      context.loaderOverlay.hide();
+      context.goNamed(RouteName.signIn);
     }
-    if (mounted) context.loaderOverlay.hide();
   }
 }
