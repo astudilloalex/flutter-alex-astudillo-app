@@ -13,7 +13,7 @@ class Company {
     this.description,
     this.id = 0,
     this.organization,
-    this.organizationId = 0,
+    this.organizationId,
     this.person,
     this.personId = 0,
     this.tradename = '',
@@ -22,7 +22,7 @@ class Company {
   });
 
   final int id;
-  final int organizationId;
+  final int? organizationId;
   final int personId;
   final String code;
   final String tradename;

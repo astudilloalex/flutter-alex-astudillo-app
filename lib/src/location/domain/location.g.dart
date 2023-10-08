@@ -27,8 +27,7 @@ Location _$LocationFromJson(Map<String, dynamic> json) => Location(
       politicalDivision: json['politicalDivision'] == null
           ? null
           : PoliticalDivision.fromJson(
-              json['politicalDivision'] as Map<String, dynamic>,
-            ),
+              json['politicalDivision'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{

@@ -17,7 +17,7 @@ Company _$CompanyFromJson(Map<String, dynamic> json) => Company(
       organization: json['organization'] == null
           ? null
           : Organization.fromJson(json['organization'] as Map<String, dynamic>),
-      organizationId: json['organizationId'] as int? ?? 0,
+      organizationId: json['organizationId'] as int?,
       person: json['person'] == null
           ? null
           : Person.fromJson(json['person'] as Map<String, dynamic>),

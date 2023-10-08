@@ -7,8 +7,7 @@ part of 'political_division_type.dart';
 // **************************************************************************
 
 PoliticalDivisionType _$PoliticalDivisionTypeFromJson(
-  Map<String, dynamic> json,
-) =>
+        Map<String, dynamic> json) =>
     PoliticalDivisionType(
       active: json['active'] as bool? ?? true,
       code: json['code'] as String? ?? '',
@@ -24,8 +23,7 @@ PoliticalDivisionType _$PoliticalDivisionTypeFromJson(
     );
 
 Map<String, dynamic> _$PoliticalDivisionTypeToJson(
-  PoliticalDivisionType instance,
-) =>
+        PoliticalDivisionType instance) =>
     <String, dynamic>{
       'id': instance.id,
       'code': instance.code,
