@@ -9,6 +9,16 @@ import 'package:http/retry.dart';
 
 GetIt getIt = GetIt.instance;
 
+bool _canRefreshToken(String path) {
+  if (path.contains('/sign-in')) return false;
+  if (path.contains('/sign-up')) return false;
+  if (path.contains('/confirm-email-verification')) return false;
+  if (path.contains('/confirm-password-reset')) return false;
+  if (path.contains('/exchange-refresh-token')) return false;
+  if (path.contains('/send-password-reset-email')) return false;
+  return true;
+}
+
 void setupGetIt() {
   getIt.registerSingleton<SecureLocalData>(const SecureLocalData());
 
@@ -23,8 +33,7 @@ void setupGetIt() {
       onRetry: (request, response, retryCount) async {
         if (retryCount == 0 &&
             response?.statusCode == 401 &&
-            !request.url.path.contains('/sign-in') &&
-            !request.url.path.contains('/sign-up')) {
+            _canRefreshToken(request.url.path)) {
           await getIt<AuthService>().exchangeRefreshToken();
         }
       },

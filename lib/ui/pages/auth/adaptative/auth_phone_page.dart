@@ -1,3 +1,4 @@
+import 'package:alex_astudillo/app/app.dart';
 import 'package:alex_astudillo/app/app_asset.dart';
 import 'package:alex_astudillo/ui/pages/auth/cubits/auth_cubit.dart';
 import 'package:alex_astudillo/ui/pages/auth/widgets/auth_change_password_form.dart';
@@ -52,7 +53,79 @@ class AuthPhonePage extends StatelessWidget {
                       ],
                     );
                   }
-                  if (mode == 'verifyEmail') {}
+                  // If mode is verify email.
+                  if (mode == 'verifyEmail') {
+                    return context.watch<AuthCubit>().state.error != null
+                        ? ListView(
+                            shrinkWrap: true,
+                            children: [
+                              const Center(
+                                child: CircleAvatar(
+                                  backgroundImage: AssetImage(AppAsset.oops),
+                                  radius: 100.0,
+                                ),
+                              ),
+                              const SizedBox(height: 16.0),
+                              Center(
+                                child: Text(
+                                  messageFromCode(
+                                    context.watch<AuthCubit>().state.error!,
+                                    context,
+                                  ),
+                                  style: const TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 16.0),
+                              Center(
+                                child: ElevatedButton.icon(
+                                  onPressed: () =>
+                                      context.goNamed(RouteName.home),
+                                  icon: const Icon(Icons.home),
+                                  label: Text(
+                                    AppLocalizations.of(context)!.home,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        : ListView(
+                            shrinkWrap: true,
+                            children: [
+                              const Center(
+                                child: CircleAvatar(
+                                  backgroundImage:
+                                      AssetImage(AppAsset.emailVerified),
+                                  radius: 100.0,
+                                ),
+                              ),
+                              const SizedBox(height: 16.0),
+                              Center(
+                                child: Text(
+                                  AppLocalizations.of(context)!.emailVerified,
+                                  style: const TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 16.0),
+                              Center(
+                                child: ElevatedButton.icon(
+                                  onPressed: () =>
+                                      context.goNamed(RouteName.home),
+                                  icon: const Icon(Icons.home),
+                                  label: Text(
+                                    AppLocalizations.of(context)!.home,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          );
+                  }
                   return ListView(
                     shrinkWrap: true,
                     children: [

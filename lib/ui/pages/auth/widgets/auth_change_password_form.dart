@@ -1,5 +1,10 @@
+import 'package:alex_astudillo/app/app.dart';
+import 'package:alex_astudillo/app/app_util.dart';
+import 'package:alex_astudillo/ui/pages/auth/cubits/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 class AuthChangePasswordForm extends StatefulWidget {
   const AuthChangePasswordForm({super.key});
@@ -48,6 +53,10 @@ class _AuthChangePasswordFormState extends State<AuthChangePasswordForm> {
               ),
             ),
             obscureText: !viewPassword,
+            validator: (value) {
+              if (AppUtil.isSafePassword(value)) return null;
+              return AppLocalizations.of(context)!.weakPassword;
+            },
           ),
           const SizedBox(height: 16.0),
           TextFormField(
@@ -67,15 +76,31 @@ class _AuthChangePasswordFormState extends State<AuthChangePasswordForm> {
               ),
             ),
             obscureText: !viewPassword,
+            validator: (value) {
+              if (value == passwordController.text) return null;
+              return AppLocalizations.of(context)!.passwordsDoNotMatch;
+            },
           ),
           const SizedBox(height: 16.0),
           ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: _changePassword,
             icon: const Icon(Icons.save_outlined),
             label: Text(AppLocalizations.of(context)!.changePassword),
           ),
         ],
       ),
     );
+  }
+
+  Future<void> _changePassword() async {
+    if (!formKey.currentState!.validate()) return;
+    context.loaderOverlay.show();
+    final String? error = await context.read<AuthCubit>().changePassword(
+          passwordController.text,
+        );
+    if (error != null && mounted) {
+      showErrorSnackbar(context, error);
+    }
+    if (mounted) context.loaderOverlay.hide();
   }
 }

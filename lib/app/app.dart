@@ -27,6 +27,7 @@ String messageFromCode(String code, BuildContext context) {
   final AppLocalizations localizations = AppLocalizations.of(context)!;
   final Map<String, String> errorMessages = {
     'weak-password': localizations.weakPassword,
+    'invalid-oob-code': localizations.invalidOobCode,
   };
   return errorMessages[code] ?? code;
 }

@@ -1,19 +1,23 @@
 class AuthState {
   const AuthState({
     this.loading = false,
-    this.verifyingEmail = false,
+    this.emailVerified = false,
+    this.error,
   });
 
   final bool loading;
-  final bool verifyingEmail;
+  final bool emailVerified;
+  final String? error;
 
   AuthState copyWith({
     bool? loading,
-    bool? verifyingEmail,
+    bool? emailVerified,
+    String? error,
   }) {
     return AuthState(
       loading: loading ?? this.loading,
-      verifyingEmail: verifyingEmail ?? this.verifyingEmail,
+      emailVerified: emailVerified ?? this.emailVerified,
+      error: error ?? this.error,
     );
   }
 }

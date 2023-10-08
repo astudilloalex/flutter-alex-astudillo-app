@@ -42,6 +42,7 @@ class RoutePage {
         name: RouteName.authAction,
         builder: (context, state) => BlocProvider(
           create: (context) => AuthCubit(
+            authService: getIt<AuthService>(),
             mode: state.uri.queryParameters['mode'] ?? '',
             oobCode: state.uri.queryParameters['oobCode'] ?? '',
           )..executeAction(),
