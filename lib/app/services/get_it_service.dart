@@ -1,6 +1,6 @@
 import 'package:alex_astudillo/src/auth/application/auth_service.dart';
 import 'package:alex_astudillo/src/auth/domain/i_auth_repository.dart';
-import 'package:alex_astudillo/src/auth/infrastructure/auth_repository.dart';
+import 'package:alex_astudillo/src/auth/infrastructure/http_auth_repository.dart';
 import 'package:alex_astudillo/src/common/infrastructure/http_base_client.dart';
 import 'package:alex_astudillo/src/common/infrastructure/secure_local_data.dart';
 import 'package:get_it/get_it.dart';
@@ -41,7 +41,7 @@ void setupGetIt() {
     secureLocalData: getIt<SecureLocalData>(),
   );
 
-  getIt.registerSingleton<IAuthRepository>(AuthRepository(httpClient));
+  getIt.registerSingleton<IAuthRepository>(HttpAuthRepository(httpClient));
 
   getIt.registerFactory<AuthService>(
     () => AuthService(

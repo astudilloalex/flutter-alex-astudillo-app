@@ -3,8 +3,8 @@ import 'package:alex_astudillo/src/common/domain/default_response.dart';
 import 'package:alex_astudillo/src/common/infrastructure/http_base_client.dart';
 import 'package:http/http.dart';
 
-class AuthRepository implements IAuthRepository {
-  const AuthRepository(this._client);
+class HttpAuthRepository implements IAuthRepository {
+  const HttpAuthRepository(this._client);
 
   final HttpBaseClient _client;
 

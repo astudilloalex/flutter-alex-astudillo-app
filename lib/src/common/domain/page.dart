@@ -1,3 +1,5 @@
+import 'package:alex_astudillo/src/common/domain/default_response.dart';
+import 'package:alex_astudillo/src/company/domain/company.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 @JsonSerializable()
@@ -42,5 +44,31 @@ class Page<T> {
       totalElements: totalElements ?? this.totalElements,
       totalPages: totalPages ?? this.totalPages,
     );
+  }
+
+  /// Construct a Page based on type of response data, if data is not list then
+  /// throw exception.
+  static Page<T> fromDefaultResponse<T>(DefaultResponse response) {
+    return Page<T>(
+      data: _parseDynamicList<T>(response.data as List<dynamic>),
+      first: response.first,
+      last: response.last,
+      numberOfElements: response.numberOfElements ?? 0,
+      offset: response.offset ?? 0,
+      pageNumber: response.pageNumber ?? 0,
+      totalElements: response.totalElements ?? 0,
+      totalPages: response.totalPages ?? 0,
+    );
+  }
+}
+
+List<T> _parseDynamicList<T>(List<dynamic> json) {
+  switch (T) {
+    case Company _:
+      return json
+          .map((json) => Company.fromJson(json as Map<String, dynamic>))
+          .toList() as List<T>;
+    default:
+      return json as List<T>;
   }
 }
