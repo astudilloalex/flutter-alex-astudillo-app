@@ -12,13 +12,18 @@ void showErrorSnackbar(BuildContext context, String errorCode) {
   );
 }
 
-void showSuccessfulSnackbar(BuildContext context, String message) {
+void showSuccessfulSnackbar(
+  BuildContext context,
+  String message, {
+  int? milliseconds,
+}) {
   ScaffoldMessenger.of(context).clearSnackBars();
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: SelectableText(messageFromCode(message, context)),
       backgroundColor: Colors.green,
       behavior: SnackBarBehavior.floating,
+      duration: Duration(milliseconds: milliseconds ?? 4000),
     ),
   );
 }
@@ -28,6 +33,7 @@ String messageFromCode(String code, BuildContext context) {
   final Map<String, String> errorMessages = {
     'weak-password': localizations.weakPassword,
     'invalid-oob-code': localizations.invalidOobCode,
+    'email-not-found': localizations.emailNotFound,
   };
   return errorMessages[code] ?? code;
 }

@@ -100,10 +100,10 @@ class _AuthChangePasswordFormState extends State<AuthChangePasswordForm> {
     final String? error = await context.read<AuthCubit>().changePassword(
           passwordController.text,
         );
+    if (mounted) context.loaderOverlay.hide();
     if (error != null && mounted) {
       showErrorSnackbar(context, error);
     } else if (mounted) {
-      context.loaderOverlay.hide();
       context.goNamed(RouteName.signIn);
     }
   }

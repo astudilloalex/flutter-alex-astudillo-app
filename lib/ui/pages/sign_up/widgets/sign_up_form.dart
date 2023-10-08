@@ -1,9 +1,13 @@
+import 'package:alex_astudillo/app/app.dart';
 import 'package:alex_astudillo/app/app_util.dart';
 import 'package:alex_astudillo/ui/pages/sign_up/cubits/sign_up_cubit.dart';
 import 'package:alex_astudillo/ui/pages/sign_up/states/sign_up_state.dart';
+import 'package:alex_astudillo/ui/routes/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -115,7 +119,19 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
-  void _signUp() {
+  Future<void> _signUp() async {
     if (!formKey.currentState!.validate()) return;
+    if (!formKey.currentState!.validate()) return;
+    final SignUpCubit cubit = context.read<SignUpCubit>();
+    final Future<String?> future = cubit.signUp(
+      emailController.text.trim(),
+      passwordController.text.trim(),
+    );
+    context.loaderOverlay.show();
+    await future.then((value) {
+      if (value == null) context.goNamed(RouteName.home);
+      if (value != null) showErrorSnackbar(context, value);
+    });
+    if (mounted) context.loaderOverlay.hide();
   }
 }

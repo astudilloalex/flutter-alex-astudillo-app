@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 class ForgotPasswordForm extends StatefulWidget {
   const ForgotPasswordForm({super.key});
@@ -65,14 +66,22 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
     );
   }
 
-  void _send() {
+  Future<void> _send() async {
     if (!formKey.currentState!.validate()) return;
-    Future.delayed(const Duration(milliseconds: 100)).then((value) {
+    context.loaderOverlay.show();
+    final String? error =
+        await context.read<ForgotPasswordCubit>().sendPasswordResetEmail(
+              emailController.text,
+            );
+    if (mounted) context.loaderOverlay.hide();
+    if (error != null && mounted) {
+      showErrorSnackbar(context, error);
+    } else if (mounted) {
       showSuccessfulSnackbar(
         context,
         AppLocalizations.of(context)!.checkYourEmail,
       );
       context.goNamed(RouteName.signIn);
-    });
+    }
   }
 }

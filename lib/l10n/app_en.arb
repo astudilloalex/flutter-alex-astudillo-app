@@ -11,6 +11,7 @@
     "dontHaveAnAccount": "Don't have an account?",
     "editProfile": "Edit profile",
     "email": "Email",
+    "emailNotFound": "Email not found",
     "emailVerified": "Email verified",
     "enterYourEmailToResetYourPassword": "Enter your email to reset your password",
     "forgottenPassword": "Forgotten password",

@@ -102,7 +102,9 @@ class RoutePage {
         path: RouteName.forgotPassword,
         name: RouteName.forgotPassword,
         builder: (context, state) => BlocProvider(
-          create: (context) => ForgotPasswordCubit(),
+          create: (context) => ForgotPasswordCubit(
+            authService: getIt<AuthService>(),
+          ),
           child: const ForgotPasswordPage(),
         ),
       ),
@@ -120,7 +122,9 @@ class RoutePage {
         path: RouteName.signUp,
         name: RouteName.signUp,
         builder: (context, state) => BlocProvider(
-          create: (context) => SignUpCubit(),
+          create: (context) => SignUpCubit(
+            authService: getIt<AuthService>(),
+          ),
           child: const SignUpPage(),
         ),
       ),

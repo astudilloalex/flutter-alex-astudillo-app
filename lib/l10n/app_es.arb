@@ -11,6 +11,7 @@
     "dontHaveAnAccount": "¿No tienes una cuenta?",
     "editProfile": "Editar perfil",
     "email": "Correo electrónico",
+    "emailNotFound": "Correo electrónico no encontrado",
     "emailVerified": "Correo electrónico verificado",
     "enterYourEmailToResetYourPassword": "Ingresa tu correo electrónico para restablecer tu contraseña",
     "forgottenPassword": "Contraseña olvidada",
