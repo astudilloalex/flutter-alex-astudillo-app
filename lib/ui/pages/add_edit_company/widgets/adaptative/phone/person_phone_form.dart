@@ -63,9 +63,7 @@ class _PersonPhoneFormState extends State<PersonPhoneForm> {
     return Form(
       key: formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      child: Column(
-        children: [],
-      ),
+      child: const Column(),
     );
   }
 

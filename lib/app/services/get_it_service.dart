@@ -9,6 +9,9 @@ import 'package:alex_astudillo/src/company/infrastructure/http_company_repositor
 import 'package:alex_astudillo/src/country/application/country_service.dart';
 import 'package:alex_astudillo/src/country/domain/i_country_repository.dart';
 import 'package:alex_astudillo/src/country/infrastructure/http_country_repository.dart';
+import 'package:alex_astudillo/src/person_document_type/application/person_document_type_service.dart';
+import 'package:alex_astudillo/src/person_document_type/domain/i_person_document_type_repository.dart';
+import 'package:alex_astudillo/src/person_document_type/infrastructure/http_person_document_type_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:http/retry.dart';
@@ -55,6 +58,9 @@ void setupGetIt() {
   getIt.registerLazySingleton<ICountryRepository>(
     () => HttpCountryRepository(httpClient),
   );
+  getIt.registerLazySingleton<IPersonDocumentTypeRepository>(
+    () => HttpPersonDocumentTypeRepository(httpClient),
+  );
 
   // Services
   getIt.registerFactory<AuthService>(
@@ -68,5 +74,8 @@ void setupGetIt() {
   );
   getIt.registerFactory<CountryService>(
     () => CountryService(getIt<ICountryRepository>()),
+  );
+  getIt.registerFactory<PersonDocumentTypeService>(
+    () => PersonDocumentTypeService(getIt<IPersonDocumentTypeRepository>()),
   );
 }

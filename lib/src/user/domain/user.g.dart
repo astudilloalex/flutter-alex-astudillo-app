@@ -29,7 +29,8 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       userMetadatum: json['userMetadatum'] == null
           ? null
           : UserMetadatum.fromJson(
-              json['userMetadatum'] as Map<String, dynamic>),
+              json['userMetadatum'] as Map<String, dynamic>,
+            ),
       username: json['username'] as String?,
     );
 
