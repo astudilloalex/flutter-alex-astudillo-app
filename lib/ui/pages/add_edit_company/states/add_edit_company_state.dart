@@ -1,0 +1,3 @@
+class AddEditCompanyState {
+  const AddEditCompanyState();
+}

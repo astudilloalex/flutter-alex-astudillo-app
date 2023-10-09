@@ -1,8 +1,6 @@
 import 'package:alex_astudillo/src/common/domain/default_response.dart';
 import 'package:alex_astudillo/src/company/domain/company.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-@JsonSerializable()
 class Page<T> {
   const Page({
     this.data = const [],
@@ -62,13 +60,16 @@ class Page<T> {
   }
 }
 
-List<T> _parseDynamicList<T>(List<dynamic> json) {
-  switch (T) {
-    case Company _:
-      return json
-          .map((json) => Company.fromJson(json as Map<String, dynamic>))
-          .toList() as List<T>;
-    default:
-      return json as List<T>;
+/// Use in separate thread for large data.
+List<T> _parseDynamicList<T>(List<dynamic> jsonList) {
+  final List<T> data = [];
+  for (final dynamic json in jsonList) {
+    if (json is! Map<String, dynamic>) continue;
+    // Check the [T] type and add data to new list.
+    switch (T) {
+      case Company _:
+        data.add(Company.fromJson(json) as T);
+    }
   }
+  return data;
 }

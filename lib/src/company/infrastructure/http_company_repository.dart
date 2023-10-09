@@ -11,10 +11,9 @@ class HttpCompanyRepository extends ICompanyRepository {
 
   @override
   Future<DefaultResponse> all({int? page, int? size}) async {
-    final Uri uri = Uri.parse('${_client.apiAuthorityV1}/company/all');
-    if (page != null && size != null) {
-      uri.queryParameters.addAll({'page': '$page', 'size': '$size'});
-    }
+    final Uri uri = Uri.parse(
+      '${_client.apiAuthorityV1}/company/all?page=$page&size=$size',
+    );
     final Response response = await _client.get(uri);
     return DefaultResponse.fromJson(await _client.parseFromJson(response.body));
   }

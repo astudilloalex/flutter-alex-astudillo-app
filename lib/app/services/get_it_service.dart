@@ -3,6 +3,9 @@ import 'package:alex_astudillo/src/auth/domain/i_auth_repository.dart';
 import 'package:alex_astudillo/src/auth/infrastructure/http_auth_repository.dart';
 import 'package:alex_astudillo/src/common/infrastructure/http_base_client.dart';
 import 'package:alex_astudillo/src/common/infrastructure/secure_local_data.dart';
+import 'package:alex_astudillo/src/company/application/company_service.dart';
+import 'package:alex_astudillo/src/company/domain/i_company_repository.dart';
+import 'package:alex_astudillo/src/company/infrastructure/http_company_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:http/retry.dart';
@@ -41,12 +44,20 @@ void setupGetIt() {
     secureLocalData: getIt<SecureLocalData>(),
   );
 
+  // Repositories
   getIt.registerSingleton<IAuthRepository>(HttpAuthRepository(httpClient));
+  getIt.registerLazySingleton<ICompanyRepository>(
+    () => HttpCompanyRepository(httpClient),
+  );
 
+  // Services
   getIt.registerFactory<AuthService>(
     () => AuthService(
       getIt<IAuthRepository>(),
       secureLocalData: getIt<SecureLocalData>(),
     ),
+  );
+  getIt.registerFactory<CompanyService>(
+    () => CompanyService(getIt<ICompanyRepository>()),
   );
 }

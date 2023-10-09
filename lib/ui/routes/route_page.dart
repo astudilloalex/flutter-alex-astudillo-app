@@ -1,5 +1,8 @@
 import 'package:alex_astudillo/app/services/get_it_service.dart';
 import 'package:alex_astudillo/src/auth/application/auth_service.dart';
+import 'package:alex_astudillo/src/company/application/company_service.dart';
+import 'package:alex_astudillo/ui/pages/add_edit_company/add_edit_company_page.dart';
+import 'package:alex_astudillo/ui/pages/add_edit_company/cubits/add_edit_company_cubit.dart';
 import 'package:alex_astudillo/ui/pages/auth/auth_page.dart';
 import 'package:alex_astudillo/ui/pages/auth/cubits/auth_cubit.dart';
 import 'package:alex_astudillo/ui/pages/edit_profile/cubits/edit_profile_cubit.dart';
@@ -70,11 +73,25 @@ class RoutePage {
               break;
           }
           return BlocProvider(
-            create: (context) => AppContainerCubit(currentIndex: index),
+            create: (context) => AppContainerCubit(
+              currentIndex: index,
+              companyService: getIt<CompanyService>(),
+            )..load(),
             child: AppContainer(body: child),
           );
         },
         routes: [
+          GoRoute(
+            parentNavigatorKey: _shellKey,
+            path: RouteName.addEditCompany,
+            name: RouteName.addEditCompany,
+            builder: (context, state) => BlocProvider(
+              create: (context) => AddEditCompanyCubit(
+                companyService: getIt<CompanyService>(),
+              ),
+              child: const AddEditCompanyPage(),
+            ),
+          ),
           GoRoute(
             parentNavigatorKey: _shellKey,
             path: RouteName.home,
