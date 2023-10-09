@@ -1,6 +1,8 @@
 import 'package:alex_astudillo/app/services/get_it_service.dart';
 import 'package:alex_astudillo/src/auth/application/auth_service.dart';
 import 'package:alex_astudillo/src/company/application/company_service.dart';
+import 'package:alex_astudillo/src/country/application/country_service.dart';
+import 'package:alex_astudillo/src/person_document_type/application/person_document_type_service.dart';
 import 'package:alex_astudillo/ui/pages/add_edit_company/add_edit_company_page.dart';
 import 'package:alex_astudillo/ui/pages/add_edit_company/cubits/add_edit_company_cubit.dart';
 import 'package:alex_astudillo/ui/pages/auth/auth_page.dart';
@@ -88,6 +90,8 @@ class RoutePage {
             builder: (context, state) => BlocProvider(
               create: (context) => AddEditCompanyCubit(
                 companyService: getIt<CompanyService>(),
+                countryService: getIt<CountryService>(),
+                personDocumentTypeService: getIt<PersonDocumentTypeService>(),
               ),
               child: const AddEditCompanyPage(),
             ),

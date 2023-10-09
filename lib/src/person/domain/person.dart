@@ -9,7 +9,7 @@ class Person {
     this.birthdate,
     this.code = '',
     this.documentType,
-    this.documentTypeId = 0,
+    this.personDocumentTypeId = 0,
     this.firstName,
     this.id = 0,
     this.idCard = '',
@@ -20,7 +20,7 @@ class Person {
   });
 
   final int id;
-  final int documentTypeId;
+  final int personDocumentTypeId;
   final String code;
   final String idCard;
   final String? firstName;
@@ -33,7 +33,7 @@ class Person {
 
   Person copyWith({
     int? id,
-    int? documentTypeId,
+    int? personDocumentTypeId,
     String? code,
     String? idCard,
     String? firstName,
@@ -46,7 +46,7 @@ class Person {
   }) {
     return Person(
       id: id ?? this.id,
-      documentTypeId: documentTypeId ?? this.documentTypeId,
+      personDocumentTypeId: personDocumentTypeId ?? this.personDocumentTypeId,
       code: code ?? this.code,
       idCard: idCard ?? this.idCard,
       firstName: firstName ?? this.firstName,
