@@ -6,6 +6,9 @@ import 'package:alex_astudillo/src/common/infrastructure/secure_local_data.dart'
 import 'package:alex_astudillo/src/company/application/company_service.dart';
 import 'package:alex_astudillo/src/company/domain/i_company_repository.dart';
 import 'package:alex_astudillo/src/company/infrastructure/http_company_repository.dart';
+import 'package:alex_astudillo/src/country/application/country_service.dart';
+import 'package:alex_astudillo/src/country/domain/i_country_repository.dart';
+import 'package:alex_astudillo/src/country/infrastructure/http_country_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:http/retry.dart';
@@ -49,6 +52,9 @@ void setupGetIt() {
   getIt.registerLazySingleton<ICompanyRepository>(
     () => HttpCompanyRepository(httpClient),
   );
+  getIt.registerLazySingleton<ICountryRepository>(
+    () => HttpCountryRepository(httpClient),
+  );
 
   // Services
   getIt.registerFactory<AuthService>(
@@ -59,5 +65,8 @@ void setupGetIt() {
   );
   getIt.registerFactory<CompanyService>(
     () => CompanyService(getIt<ICompanyRepository>()),
+  );
+  getIt.registerFactory<CountryService>(
+    () => CountryService(getIt<ICountryRepository>()),
   );
 }
