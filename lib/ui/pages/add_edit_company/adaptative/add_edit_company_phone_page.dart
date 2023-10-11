@@ -9,7 +9,7 @@ class AddEditCompanyPhonePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String? code = context.read<AddEditCompanyCubit>().code;
+    final String? code = context.read<AddEditCompanyCubit>().companyCode;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -22,10 +22,13 @@ class AddEditCompanyPhonePage extends StatelessWidget {
       body: ListView(
         children: [
           const SizedBox(height: 16.0),
-          Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 450.0),
-              child: const AddEditCompanyForm(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 450.0),
+                child: const AddEditCompanyForm(),
+              ),
             ),
           ),
         ],

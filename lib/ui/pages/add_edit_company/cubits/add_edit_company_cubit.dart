@@ -10,13 +10,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddEditCompanyCubit extends Cubit<AddEditCompanyState> {
   AddEditCompanyCubit({
-    this.code,
+    this.companyCode,
     required this.companyService,
     required this.countryService,
     required this.personDocumentTypeService,
   }) : super(const AddEditCompanyState());
 
-  final String? code;
+  final String? companyCode;
   final CompanyService companyService;
   final CountryService countryService;
   final PersonDocumentTypeService personDocumentTypeService;

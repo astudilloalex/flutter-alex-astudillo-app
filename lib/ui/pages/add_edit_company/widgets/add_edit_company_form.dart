@@ -1,6 +1,7 @@
 import 'package:alex_astudillo/ui/pages/add_edit_company/cubits/add_edit_company_cubit.dart';
 import 'package:alex_astudillo/ui/pages/add_edit_company/widgets/adaptative/phone/company_phone_form.dart';
 import 'package:alex_astudillo/ui/pages/add_edit_company/widgets/adaptative/phone/person_phone_form.dart';
+import 'package:alex_astudillo/ui/pages/add_edit_company/widgets/add_edit_company_action.dart';
 import 'package:alex_astudillo/ui/widgets/responsive_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,6 +54,8 @@ class AddEditCompanyForm extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 16.0),
+          const AddEditCompanyAction(),
         ],
       ),
     );
