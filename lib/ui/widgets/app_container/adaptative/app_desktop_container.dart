@@ -27,6 +27,8 @@ class AppDesktopContainer extends StatelessWidget {
                   if (currentIndex != 0) context.goNamed(RouteName.home);
                 case 1:
                   if (currentIndex != 1) context.goNamed(RouteName.profile);
+                case 2:
+                  if (currentIndex != 2) context.goNamed(RouteName.setting);
               }
               context.read<AppContainerCubit>().updateIndex(value);
             },
@@ -38,6 +40,10 @@ class AppDesktopContainer extends StatelessWidget {
               NavigationRailDestination(
                 icon: const Icon(Icons.person_outlined),
                 label: Text(AppLocalizations.of(context)!.profile),
+              ),
+              NavigationRailDestination(
+                icon: const Icon(Icons.settings_outlined),
+                label: Text(AppLocalizations.of(context)!.save),
               ),
             ],
             selectedIndex:

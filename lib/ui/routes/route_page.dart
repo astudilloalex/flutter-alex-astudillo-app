@@ -18,6 +18,8 @@ import 'package:alex_astudillo/ui/pages/home/home_page.dart';
 import 'package:alex_astudillo/ui/pages/profile/cubits/profile_cubit.dart';
 import 'package:alex_astudillo/ui/pages/profile/cubits/profile_detail_cubit.dart';
 import 'package:alex_astudillo/ui/pages/profile/profile_page.dart';
+import 'package:alex_astudillo/ui/pages/setting/cubits/setting_cubit.dart';
+import 'package:alex_astudillo/ui/pages/setting/setting_page.dart';
 import 'package:alex_astudillo/ui/pages/sign_in/cubits/sign_in_cubit.dart';
 import 'package:alex_astudillo/ui/pages/sign_in/sign_in_page.dart';
 import 'package:alex_astudillo/ui/pages/sign_up/cubits/sign_up_cubit.dart';
@@ -128,6 +130,17 @@ class RoutePage {
                 BlocProvider(create: (context) => ProfileDetailCubit()),
               ],
               child: const ProfilePage(),
+            ),
+          ),
+          GoRoute(
+            parentNavigatorKey: _shellKey,
+            path: RouteName.setting,
+            name: RouteName.setting,
+            builder: (context, state) => MultiBlocProvider(
+              providers: [
+                BlocProvider(create: (context) => SettingCubit()),
+              ],
+              child: const SettingPage(),
             ),
           ),
         ],
