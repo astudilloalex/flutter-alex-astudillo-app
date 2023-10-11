@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
@@ -23,7 +24,9 @@ class SettingPage extends StatelessWidget {
           ),
           InkWell(
             onTap: () {},
-            child: const Card(),
+            child: const Card(
+              child: FaIcon(FontAwesomeIcons.house),
+            ),
           ),
         ],
       ),
