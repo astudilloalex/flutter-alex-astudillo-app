@@ -43,7 +43,7 @@ class AppDesktopContainer extends StatelessWidget {
               ),
               NavigationRailDestination(
                 icon: const Icon(Icons.settings_outlined),
-                label: Text(AppLocalizations.of(context)!.save),
+                label: Text(AppLocalizations.of(context)!.setting),
               ),
             ],
             selectedIndex:

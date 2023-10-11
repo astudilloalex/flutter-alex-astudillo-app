@@ -25,6 +25,8 @@ class AppPhoneContainer extends StatelessWidget {
               if (currentIndex != 0) context.goNamed(RouteName.home);
             case 1:
               if (currentIndex != 1) context.goNamed(RouteName.profile);
+            case 2:
+              if (currentIndex != 2) context.goNamed(RouteName.setting);
           }
           context.read<AppContainerCubit>().updateIndex(value);
         },
@@ -37,6 +39,10 @@ class AppPhoneContainer extends StatelessWidget {
           NavigationDestination(
             icon: const Icon(Icons.person_outlined),
             label: AppLocalizations.of(context)!.profile,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.settings_outlined),
+            label: AppLocalizations.of(context)!.setting,
           ),
         ],
       ),

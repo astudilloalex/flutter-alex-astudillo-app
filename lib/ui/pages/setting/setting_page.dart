@@ -1,5 +1,3 @@
-import 'package:alex_astudillo/ui/pages/setting/adaptative/setting_phone_page.dart';
-import 'package:alex_astudillo/ui/widgets/responsive_widget.dart';
 import 'package:flutter/material.dart';
 
 class SettingPage extends StatelessWidget {
@@ -7,8 +5,28 @@ class SettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ResponsiveWidget(
-      phone: SettingPhonePage(),
+    return Scaffold(
+      body: GridView.extent(
+        maxCrossAxisExtent: 200.0,
+        children: [
+          InkWell(
+            onTap: () {},
+            child: const Card(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.abc),
+                  Text('Empresas'),
+                ],
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {},
+            child: const Card(),
+          ),
+        ],
+      ),
     );
   }
 }
