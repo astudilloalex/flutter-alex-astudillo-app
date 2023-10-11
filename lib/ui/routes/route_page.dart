@@ -7,6 +7,8 @@ import 'package:alex_astudillo/ui/pages/add_edit_company/add_edit_company_page.d
 import 'package:alex_astudillo/ui/pages/add_edit_company/cubits/add_edit_company_cubit.dart';
 import 'package:alex_astudillo/ui/pages/auth/auth_page.dart';
 import 'package:alex_astudillo/ui/pages/auth/cubits/auth_cubit.dart';
+import 'package:alex_astudillo/ui/pages/company/company_page.dart';
+import 'package:alex_astudillo/ui/pages/company/cubits/company_cubit.dart';
 import 'package:alex_astudillo/ui/pages/edit_profile/cubits/edit_profile_cubit.dart';
 import 'package:alex_astudillo/ui/pages/edit_profile/edit_profile_page.dart';
 import 'package:alex_astudillo/ui/pages/forgot_password/cubits/forgot_password_cubit.dart';
@@ -94,6 +96,17 @@ class RoutePage {
                 personDocumentTypeService: getIt<PersonDocumentTypeService>(),
               ),
               child: const AddEditCompanyPage(),
+            ),
+          ),
+          GoRoute(
+            parentNavigatorKey: _shellKey,
+            path: RouteName.company,
+            name: RouteName.company,
+            builder: (context, state) => BlocProvider(
+              create: (context) => CompanyCubit(
+                companyService: getIt<CompanyService>(),
+              ),
+              child: const CompanyPage(),
             ),
           ),
           GoRoute(

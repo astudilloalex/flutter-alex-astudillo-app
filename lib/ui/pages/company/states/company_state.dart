@@ -1,0 +1,3 @@
+class CompanyState {
+  const CompanyState();
+}

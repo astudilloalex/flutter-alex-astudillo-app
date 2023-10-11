@@ -3,6 +3,7 @@ class RouteName {
 
   static const String addEditCompany = '/add-edit-company';
   static const String authAction = '/auth/action';
+  static const String company = '/company';
   static const String editProfile = '/edit-profile';
   static const String forgotPassword = '/forgot-password';
   static const String home = '/home';
