@@ -1,0 +1,3 @@
+class AppState {
+  const AppState();
+}
