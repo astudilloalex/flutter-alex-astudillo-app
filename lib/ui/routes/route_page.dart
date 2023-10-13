@@ -2,6 +2,7 @@ import 'package:alex_astudillo/app/services/get_it_service.dart';
 import 'package:alex_astudillo/src/auth/application/auth_service.dart';
 import 'package:alex_astudillo/src/company/application/company_service.dart';
 import 'package:alex_astudillo/src/country/application/country_service.dart';
+import 'package:alex_astudillo/src/menu/application/menu_service.dart';
 import 'package:alex_astudillo/src/person_document_type/application/person_document_type_service.dart';
 import 'package:alex_astudillo/ui/pages/add_edit_company/add_edit_company_page.dart';
 import 'package:alex_astudillo/ui/pages/add_edit_company/cubits/add_edit_company_cubit.dart';
@@ -82,6 +83,7 @@ class RoutePage {
             create: (context) => AppContainerCubit(
               currentIndex: index,
               companyService: getIt<CompanyService>(),
+              menuService: getIt<MenuService>(),
             )..load(),
             child: AppContainer(body: child),
           );
