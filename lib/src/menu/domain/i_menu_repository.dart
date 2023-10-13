@@ -4,4 +4,6 @@ abstract class IMenuRepository {
   const IMenuRepository();
 
   Future<DefaultResponse> findAll();
+
+  Future<DefaultResponse> findParents();
 }

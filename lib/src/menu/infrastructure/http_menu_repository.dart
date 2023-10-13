@@ -15,4 +15,12 @@ class HttpMenuRepository implements IMenuRepository {
     );
     return DefaultResponse.fromJson(await _client.parseFromJson(response.body));
   }
+
+  @override
+  Future<DefaultResponse> findParents() async {
+    final Response response = await _client.get(
+      Uri.parse('${_client.apiAuthorityV1}/menu/all/parents'),
+    );
+    return DefaultResponse.fromJson(await _client.parseFromJson(response.body));
+  }
 }
