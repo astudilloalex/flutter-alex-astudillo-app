@@ -9,6 +9,9 @@ import 'package:alex_astudillo/src/company/infrastructure/http_company_repositor
 import 'package:alex_astudillo/src/country/application/country_service.dart';
 import 'package:alex_astudillo/src/country/domain/i_country_repository.dart';
 import 'package:alex_astudillo/src/country/infrastructure/http_country_repository.dart';
+import 'package:alex_astudillo/src/menu/application/menu_service.dart';
+import 'package:alex_astudillo/src/menu/domain/i_menu_repository.dart';
+import 'package:alex_astudillo/src/menu/infrastructure/http_menu_repository.dart';
 import 'package:alex_astudillo/src/person_document_type/application/person_document_type_service.dart';
 import 'package:alex_astudillo/src/person_document_type/domain/i_person_document_type_repository.dart';
 import 'package:alex_astudillo/src/person_document_type/infrastructure/http_person_document_type_repository.dart';
@@ -58,6 +61,9 @@ void setupGetIt() {
   getIt.registerLazySingleton<ICountryRepository>(
     () => HttpCountryRepository(httpClient),
   );
+  getIt.registerLazySingleton<IMenuRepository>(
+    () => HttpMenuRepository(httpClient),
+  );
   getIt.registerLazySingleton<IPersonDocumentTypeRepository>(
     () => HttpPersonDocumentTypeRepository(httpClient),
   );
@@ -74,6 +80,9 @@ void setupGetIt() {
   );
   getIt.registerFactory<CountryService>(
     () => CountryService(getIt<ICountryRepository>()),
+  );
+  getIt.registerFactory<MenuService>(
+    () => MenuService(getIt<IMenuRepository>()),
   );
   getIt.registerFactory<PersonDocumentTypeService>(
     () => PersonDocumentTypeService(getIt<IPersonDocumentTypeRepository>()),

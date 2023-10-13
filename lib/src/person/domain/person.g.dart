@@ -14,9 +14,8 @@ Person _$PersonFromJson(Map<String, dynamic> json) => Person(
       documentType: json['documentType'] == null
           ? null
           : PersonDocumentType.fromJson(
-              json['documentType'] as Map<String, dynamic>,
-            ),
-      personDocumentTypeId: json['documentTypeId'] as int? ?? 0,
+              json['documentType'] as Map<String, dynamic>),
+      personDocumentTypeId: json['personDocumentTypeId'] as int? ?? 0,
       firstName: json['firstName'] as String?,
       id: json['id'] as int? ?? 0,
       idCard: json['idCard'] as String? ?? '',
@@ -28,7 +27,7 @@ Person _$PersonFromJson(Map<String, dynamic> json) => Person(
 
 Map<String, dynamic> _$PersonToJson(Person instance) => <String, dynamic>{
       'id': instance.id,
-      'documentTypeId': instance.personDocumentTypeId,
+      'personDocumentTypeId': instance.personDocumentTypeId,
       'code': instance.code,
       'idCard': instance.idCard,
       'firstName': instance.firstName,

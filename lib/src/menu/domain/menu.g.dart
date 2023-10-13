@@ -21,10 +21,6 @@ Menu _$MenuFromJson(Map<String, dynamic> json) => Menu(
       isPublic: json['isPublic'] as bool? ?? false,
       name: json['name'] as String? ?? '',
       order: json['order'] as int? ?? 0,
-      organization: json['organization'] == null
-          ? null
-          : Organization.fromJson(json['organization'] as Map<String, dynamic>),
-      organizationId: json['organizationId'] as int? ?? 0,
       parent: json['parent'] == null
           ? null
           : Menu.fromJson(json['parent'] as Map<String, dynamic>),
@@ -37,7 +33,6 @@ Menu _$MenuFromJson(Map<String, dynamic> json) => Menu(
 
 Map<String, dynamic> _$MenuToJson(Menu instance) => <String, dynamic>{
       'id': instance.id,
-      'organizationId': instance.organizationId,
       'parentId': instance.parentId,
       'code': instance.code,
       'name': instance.name,
@@ -50,6 +45,5 @@ Map<String, dynamic> _$MenuToJson(Menu instance) => <String, dynamic>{
       'creationDate': instance.creationDate?.toIso8601String(),
       'updateDate': instance.updateDate?.toIso8601String(),
       'inverseParent': instance.inverseParent,
-      'organization': instance.organization,
       'parent': instance.parent,
     };

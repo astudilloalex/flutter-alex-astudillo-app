@@ -16,8 +16,6 @@ class Menu {
     this.isPublic = false,
     this.name = '',
     this.order = 0,
-    this.organization,
-    this.organizationId = 0,
     this.parent,
     this.parentId,
     this.path = '',
@@ -25,7 +23,6 @@ class Menu {
   });
 
   final int id;
-  final int organizationId;
   final int? parentId;
   final String code;
   final String name;
@@ -38,12 +35,10 @@ class Menu {
   final DateTime? creationDate;
   final DateTime? updateDate;
   final List<Menu>? inverseParent;
-  final Organization? organization;
   final Menu? parent;
 
   Menu copyWith({
     int? id,
-    int? organizationId,
     int? parentId,
     String? code,
     String? name,
@@ -56,12 +51,10 @@ class Menu {
     DateTime? creationDate,
     DateTime? updateDate,
     List<Menu>? inverseParent,
-    Organization? organization,
     Menu? parent,
   }) {
     return Menu(
       id: id ?? this.id,
-      organizationId: organizationId ?? this.organizationId,
       parentId: parentId ?? this.parentId,
       code: code ?? this.code,
       name: name ?? this.name,
@@ -74,7 +67,6 @@ class Menu {
       creationDate: creationDate ?? this.creationDate,
       updateDate: updateDate ?? this.updateDate,
       inverseParent: inverseParent ?? this.inverseParent,
-      organization: organization ?? this.organization,
       parent: parent ?? this.parent,
     );
   }
